@@ -19,14 +19,14 @@ return new class extends Migration
             $table->integer('age');
             $table->date('birthdate');
             $table->string('email')->unique();
-            $table->integer('phone')->unique();
-            $table->timestamp('email_verified_at')->nullable(); // ! autogenerada
+            $table->string('phone', 20)->unique();
+            $table->timestamp('email_verified_at')->nullable(); // * autogenerada
             $table->string('password');
             $table->boolean('active')->default(false);
             $table->double('latitude');
             $table->double('longitude');
-            $table->rememberToken(); // ! autogenerado (quizá relacionado a personal access y password reset)
-            $table->timestamps(); // ! autogenerado
+            $table->rememberToken(); // * autogenerado (quizá relacionado a personal access y password reset)
+            $table->timestamps(); // * autogenerado
         });
     }
 
