@@ -62,20 +62,24 @@ class AuthController extends Controller
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        return response()->json([
-            'message'=> 'Inició sesión con usuario '.$user->name,
-            'accessToken' => $token,
-            'token_type' => 'Bearer',
-            'user' => $user
-        ]);
+        return view('dashboard');
+
+        // return response()->json([
+        //     'message'=> 'Inició sesión con usuario '.$user->name,
+        //     'accessToken' => $token,
+        //     'token_type' => 'Bearer',
+        //     'user' => $user
+        // ]);
     }
 
     public function logout(Request $request) {
         $user = Auth::user();
         PersonalAccessToken::where('tokenable_id', $user->id)->delete();
 
-        return response()->json([
-            'message' => 'Sesión cerrada exitosamente'
-        ]);
+        return view('dashboard');
+
+        // return response()->json([
+        //     'message' => 'Sesión cerrada exitosamente'
+        // ]);
     }
 }
