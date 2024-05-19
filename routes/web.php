@@ -19,14 +19,23 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/login', function (){
+Route::get('/logincred', function (){
     return view('login');
-})->name('login');
+})->name('logincred');
 
-Route::get('/register', function () {
+Route::get('/registercred', function () {
     return view('register');
-})->name('register');
+})->name('registercred');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware('auth')->name('dashboard');
+});
+
+
+Route::post('dashboard',[AuthController::class, 'login'])->name('dashboard');
+Route::post('register', [AuthController::class, 'register'])->name('registerpost');
+Route::post('loginpost', [AuthController::class, 'login'])->name('loginpost');
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+});
