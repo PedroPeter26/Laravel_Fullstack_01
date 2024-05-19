@@ -76,7 +76,7 @@ class AuthController extends Controller
         $user = Auth::user();
         PersonalAccessToken::where('tokenable_id', $user->id)->delete();
 
-        return view('dashboard');
+        return view('home');
 
         // return response()->json([
         //     'message' => 'Sesión cerrada exitosamente'
