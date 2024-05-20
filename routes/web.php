@@ -36,13 +36,13 @@ Route::get('/update', function (){
 })->name('update');
 
 
-Route::post('/dashboard',[AuthController::class, 'login'])->name('dashboard');
-Route::post('/register', [AuthController::class, 'register'])->name('register');
-Route::post('/loginpost', [AuthController::class, 'login'])->name('loginpost');
-Route::post('/logout',[AuthController::class, 'logout']);
+Route::post('dashboard',[AuthController::class, 'login'])->name('dashboard');
+Route::post('register', [AuthController::class, 'register'])->name('register');
+Route::post('loginpost', [AuthController::class, 'login'])->name('loginpost');
+Route::post('logout',[AuthController::class, 'logout'])->name('logoutpost');
 
 Route::get('index',[UserController::class, 'index'])->name('index');
-Route::put('/update/{id}',[UserController::class, 'update'])->name('updateput');
+Route::put('update/{id}',[UserController::class, 'update'])->name('updateput');
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
