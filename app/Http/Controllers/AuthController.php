@@ -21,8 +21,8 @@ class AuthController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
             'phone' => 'required',
-            'longitude' => 'required',
-            'latitude' => 'required'
+            #'longitude' => 'required',
+            #'latitude' => 'required'
         ]);
 
         if($validator->fails()) {
@@ -38,17 +38,20 @@ class AuthController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'password' => Hash::make($request->password),
-            'latitude' => $request->latitude,
-            'longitude' => $request->longitude
+            #'latitude' => $request->latitude,
+            #'longitude' => $request->longitude
         ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        return response()->json([
-            'data' => $user,
-            'token' => $token,
-            'token_type' =>'Bearer'
-        ]);
+        return view('logincred');
+
+        
+        #return response()->json([
+        #   'data' => $user,
+        #   'token' => $token,
+        #   'token_type' =>'Bearer'
+        #]);
     }
 
     public function login(Request $request) {

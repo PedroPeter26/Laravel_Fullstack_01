@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('home');
@@ -30,12 +31,18 @@ Route::get('/registercred', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
+Route::get('/update', function (){
+    return view('update');
+})->name('update');
 
 
-Route::post('dashboard',[AuthController::class, 'login'])->name('dashboard');
-Route::post('registercred', [AuthController::class, 'register'])->name('registerpost');
-Route::post('loginpost', [AuthController::class, 'login'])->name('loginpost');
-Route::post('logout',[AuthController::class, 'logout']);
+Route::post('/dashboard',[AuthController::class, 'login'])->name('dashboard');
+Route::post('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/loginpost', [AuthController::class, 'login'])->name('loginpost');
+Route::post('/logout',[AuthController::class, 'logout']);
+
+Route::get('index',[UserController::class, 'index'])->name('index');
+Route::put('/update/{id}',[UserController::class, 'update'])->name('updateput');
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
