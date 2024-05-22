@@ -76,7 +76,7 @@
 
       <p class="mt-10 text-center text-sm text-gray-500">
         ¿Ya tienes una cuenta? 
-        <a href="login" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Inicia sesión aquí</a>
+        <a href="#" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Inicia sesión aquí</a>
       </p>
     </div>
   </div>

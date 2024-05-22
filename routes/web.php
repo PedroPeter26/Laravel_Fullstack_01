@@ -13,20 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-use App\Http\Controllers\AuthController;
-
 Route::get('/', function () {
-    return view('home');
-})->name('home');
-
-Route::get('/login', function (){
-    return view('login');
-})->name('login');
-
+    return view('welcome');
+});
 Route::get('/register', function () {
     return view('register');
-})->name('register');
-
+});
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware('auth')->name('dashboard');
+});
