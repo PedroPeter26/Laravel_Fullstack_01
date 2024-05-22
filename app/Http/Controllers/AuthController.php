@@ -21,8 +21,6 @@ class AuthController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
             'phone' => 'required',
-            #'longitude' => 'required',
-            #'latitude' => 'required'
         ]);
 
         if($validator->fails()) {
@@ -38,13 +36,13 @@ class AuthController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'password' => Hash::make($request->password),
-            #'latitude' => $request->latitude,
-            #'longitude' => $request->longitude
+            'latitude' => 40.7128,
+            'longitude' => -74.0060
         ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        return view('logincred');
+        return view('login');
 
         
         #return response()->json([
