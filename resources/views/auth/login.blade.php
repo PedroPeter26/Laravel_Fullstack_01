@@ -13,7 +13,8 @@
     </div>
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form class="space-y-6" action="#" method="POST">
+      <form class="space-y-6" action="{{ route('login.submit') }}" method="POST">
+        @csrf
         <div>
           <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
           <div class="mt-2">
@@ -24,9 +25,6 @@
         <div>
           <div class="flex items-center justify-between">
             <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Contraseña</label>
-            <!-- <div class="text-sm">
-              <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">¿Olvidaste tu contraseña?</a>
-            </div> -->
           </div>
           <div class="mt-2">
             <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
@@ -40,7 +38,7 @@
 
       <p class="mt-10 text-center text-sm text-gray-500">
         ¿No tienes una cuenta? :0
-        <a href="#" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Registrate aquí</a>
+        <a href="{{ route('register') }}" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Registrate aquí</a>
       </p>
     </div>
   </div>

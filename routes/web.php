@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +15,27 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('auth.login');
+})->name('login');
+
 Route::get('/register', function () {
-    return view('register');
+    return view('auth.register');
+})->name('register');
+
+//* Rutas protegidas
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        if (auth()->check()) {
+            return view('dashboard');
+        } else {
+            return redirect()->route('login');
+        }
+    })->name('dashboard');
 });
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+
+
+//? Auth Funcs
+// Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+// Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
+// Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum')->name('logout');
+require __DIR__.'/auth.php';

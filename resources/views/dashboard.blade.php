@@ -13,7 +13,7 @@
             <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 <p class="text-center text-gray-700">¡Has iniciado sesión!</p>
             </div>
-            <form action="/logout" method="POST">
+            <form action="{{ route('logout') }}" method="POST">
                 @csrf
                 <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded w-full">
                     Cerrar sesión

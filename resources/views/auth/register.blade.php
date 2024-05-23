@@ -12,7 +12,8 @@
     </div>
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form class="space-y-6" action="#" method="POST">
+      <form class="space-y-6" action="{{ route('register.submit') }}" method="POST">
+        @csrf
         <div>
           <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Nombre</label>
           <div class="mt-2">
@@ -76,7 +77,7 @@
 
       <p class="mt-10 text-center text-sm text-gray-500">
         ¿Ya tienes una cuenta? 
-        <a href="#" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Inicia sesión aquí</a>
+        <a href="{{ route('login') }}" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Inicia sesión aquí</a>
       </p>
     </div>
   </div>

@@ -23,8 +23,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable(); // * autogenerada
             $table->string('password');
             $table->boolean('active')->default(false);
-            $table->double('latitude');
-            $table->double('longitude');
+            $table->double('latitude')->nullable()->default(0.0);
+            $table->double('longitude')->nullable()->default(0.0);
             $table->rememberToken(); // * autogenerado (quizá relacionado a personal access y password reset)
             $table->timestamps(); // * autogenerado
         });
