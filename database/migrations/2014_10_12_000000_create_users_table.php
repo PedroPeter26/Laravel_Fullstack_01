@@ -25,6 +25,7 @@ return new class extends Migration
             $table->boolean('active')->default(false);
             $table->double('latitude')->nullable()->default(0.0);
             $table->double('longitude')->nullable()->default(0.0);
+            $table->string('verification_code', 4)->nullable();
             $table->rememberToken(); // * autogenerado (quizá relacionado a personal access y password reset)
             $table->timestamps(); // * autogenerado
         });

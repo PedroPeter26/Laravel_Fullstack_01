@@ -2,17 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use Illuminate\Http\Request;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return view('auth.login');
@@ -22,20 +15,19 @@ Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
 
+Route::get('/verification/notice', function (Request $request) {
+    return view('auth.verification', ['email' => $request->query('email')]);
+})->name('verification.notice');
+
+Route::post('/verification/verify', [AuthController::class, 'verify'])->name('verification.verify');
+
 //* Rutas protegidas
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
-        if (auth()->check()) {
-            return view('dashboard');
-        } else {
-            return redirect()->route('login');
-        }
-    })->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::get('/map', [DashboardController::class, 'showMap'])->name('map');
+    Route::get('/users/map', [UserController::class, 'showUserMap'])->name('users.map');
 });
 
-
-//? Auth Funcs
-// Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
-// Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
-// Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum')->name('logout');
 require __DIR__.'/auth.php';
